@@ -1,5 +1,7 @@
 package com.netcracker.homeworkOOP1.myfigure;
 
+import com.netcracker.homeworkOOP1.figure.Circle;
+
 import java.util.Arrays;
 
 public class MyPoint {
@@ -31,7 +33,7 @@ public class MyPoint {
     }
 
     public int[] getXY() {
-        return new int[] {x, y};
+        return new int[]{x, y};
     }
 
     public void setXY(int x, int y) {
@@ -42,6 +44,23 @@ public class MyPoint {
     public void setXY(MyPoint mp) {
         this.x = mp.x;
         this.y = mp.y;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || !(this.getClass().equals(obj.getClass()))) return false;
+        MyPoint myPoint = (MyPoint) obj;
+        if (x != myPoint.x) return false;
+        return y == myPoint.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + x;
+        result = 31 * result + y;
+        return result;
     }
 
     @Override
@@ -88,3 +107,4 @@ public class MyPoint {
     }
 
 }
+

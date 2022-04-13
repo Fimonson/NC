@@ -37,6 +37,23 @@ public class Rectangle {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || !(this.getClass().equals(obj.getClass()))) return false;
+        Rectangle rectangle = (Rectangle) obj;
+        if (length != rectangle.length) return false;
+        return width == rectangle.width;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + (int) length;
+        result = 31 * result + (int) width;
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Rectangle[length= " + length + ", width= " + width + "]\n";
     }

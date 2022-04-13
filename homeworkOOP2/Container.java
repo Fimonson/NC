@@ -14,7 +14,7 @@ public class Container {
     public Container(int x, int y, int width, int height) {
         this.x1 = x;
         this.y1 = y;
-        this.x2 = width  + this.x1;
+        this.x2 = width + this.x1;
         this.y2 = height + this.y1;
     }
 
@@ -40,11 +40,30 @@ public class Container {
         double op2Radius = ball.getRadius();
 
         return (
-                (op2X - op2Radius) > this.x1         &&
+                (op2X - op2Radius) > this.x1 &&
                         (op2X + op2Radius) < this.getWidth() &&
-                        (op2Y - op2Radius) > this.y1         &&
+                        (op2Y - op2Radius) > this.y1 &&
                         (op2Y + op2Radius) < this.getHeight()
         );
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || !(this.getClass().equals(obj.getClass()))) return false;
+        Container container = (Container) obj;
+        return x1 == container.x1 && y1 == container.y1
+                && x2 == container.x2 && y2 == container.y2;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + x1;
+        result = 31 * result + x2;
+        result = 31 * result + y1;
+        result = 31 * result + y2;
+        return result;
     }
 
     @Override

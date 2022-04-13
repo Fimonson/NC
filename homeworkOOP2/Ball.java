@@ -67,6 +67,26 @@ public class Ball {
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || !(this.getClass().equals(obj.getClass()))) return false;
+        Ball ball = (Ball) obj;
+        return x == ball.x && y == ball.y
+                && radius == ball.radius && xDelta == ball.xDelta && yDelta == ball.yDelta;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + radius;
+        result = 31 * result + (int) x;
+        result = 31 * result + (int) y;
+        result = 31 * result + (int) xDelta;
+        result = 31 * result + (int) yDelta;
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Ball = {(" + x + ", " + y + "), speed = " + xDelta + ", " + yDelta + ")}";
     }
@@ -87,3 +107,4 @@ public class Ball {
         System.out.println(c.toString());
     }
 }
+

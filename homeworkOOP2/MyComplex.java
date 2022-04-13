@@ -1,5 +1,7 @@
 package com.netcracker.homeworkOOP2;
 
+import java.math.BigDecimal;
+
 public class MyComplex {
     private double real, imag;
 
@@ -65,11 +67,11 @@ public class MyComplex {
     }
 
     public boolean isReal() {
-        return real != 0;
+        return Double.compare(real, 0.0d) != 0;
     }
 
     public boolean isImaginary() {
-        return imag != 0;
+        return Double.compare(imag, 0.0d) != 0;
     }
 
     public boolean equals(double real, double imag) {
@@ -83,6 +85,14 @@ public class MyComplex {
 
         MyComplex that = (MyComplex) o;
         return Double.compare(that.real, this.real) == 0 && Double.compare(that.imag, this.imag) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + (int) real;
+        result = 31 * result + (int) imag;
+        return result;
     }
 
     public boolean equals(MyComplex op2) {

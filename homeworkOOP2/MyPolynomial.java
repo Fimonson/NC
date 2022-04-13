@@ -27,11 +27,29 @@ public class MyPolynomial {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MyPolynomial that = (MyPolynomial) o;
+        if (coeffs.length != that.coeffs.length) return false;
+        for (int i = 0; i < coeffs.length; i++)
+            if (coeffs[i] != that.coeffs[i]) return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        for (double i : coeffs)
+            result = 31 * result + (int) i;
+        return result;
+    }
+
+    @Override
     public String toString() {
         if (coeffs.length == 1) {
             return "" + coeffs[0];
-        }
-        else if (coeffs.length == 2) {
+        } else if (coeffs.length == 2) {
             return Math.abs(coeffs[1]) + "x " + (
                     coeffs[0] != 0 ? (
                             coeffs[0] > 0 ? "+ " : "- "
@@ -123,8 +141,8 @@ public class MyPolynomial {
 
     public static void main(String[] args) {
 
-        MyPolynomial mp1 = new MyPolynomial(new double[] {5, 3, 2});
-        MyPolynomial mp2 = new MyPolynomial(new double[] {4, -3, -8, 1});
+        MyPolynomial mp1 = new MyPolynomial(new double[]{5, 3, 2});
+        MyPolynomial mp2 = new MyPolynomial(new double[]{4, -3, -8, 1});
 
         System.out.println(mp1.getDegree());
         System.out.println(mp1.toString());

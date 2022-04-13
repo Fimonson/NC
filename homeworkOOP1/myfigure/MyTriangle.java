@@ -1,6 +1,7 @@
 package com.netcracker.homeworkOOP1.myfigure;
 
 import com.netcracker.homeworkOOP1.Figure;
+import com.netcracker.homeworkOOP1.figure.Circle;
 
 public class MyTriangle extends MyPoint implements Figure {
     private final MyPoint v1, v2, v3;
@@ -36,12 +37,34 @@ public class MyTriangle extends MyPoint implements Figure {
                 (v1.distance(v3) == v2.distance(v3) ? 1 : 0);
 
         switch (cnt) {
-            case 0: return TypeTriangle.SCALENE.nameLowerCase();
-            case 1: return TypeTriangle.SCALENE.nameLowerCase();
-            case 2: return TypeTriangle.ISOSCELES.nameLowerCase();
-            case 3: return TypeTriangle.EQUILATERAL.nameLowerCase();
-            default: throw new IllegalStateException("Unexpected value: " + cnt);
+            case 0:
+                return TypeTriangle.SCALENE.nameLowerCase();
+            case 1:
+                return TypeTriangle.SCALENE.nameLowerCase();
+            case 2:
+                return TypeTriangle.ISOSCELES.nameLowerCase();
+            case 3:
+                return TypeTriangle.EQUILATERAL.nameLowerCase();
+            default:
+                throw new IllegalStateException("Unexpected value: " + cnt);
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || !(this.getClass().equals(obj.getClass()))) return false;
+        MyTriangle myTriangle = (MyTriangle) obj;
+        return v1 == myTriangle.v1 && v2 == myTriangle.v2 && v3 == myTriangle.v3;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 17;
+        result = 31 * result + v1.hashCode();
+        result = 31 * result + v2.hashCode();
+        result = 31 * result + v3.hashCode();
+        return result;
     }
 
     @Override
@@ -77,3 +100,4 @@ public class MyTriangle extends MyPoint implements Figure {
         System.out.println();
     }
 }
+
